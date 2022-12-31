@@ -1,0 +1,100 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+    صفحه تماس باما
+{% endblock %}
+
+{% block content %}
+    <div id="contact-page" class="container">
+        <div class="bg">
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="contact-form">
+                        <h2 class="title text-center">با ما در ارتباط باشیـد</h2>
+                        <div class="status alert alert-success" style="display: none"></div>
+                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post"
+                              action="{% url 'contact_us_page' %}">
+                            {% csrf_token %}
+                            {#                            {{ contact_form }}#}
+                            {#                            <div class="form-group col-md-6">#}
+                            {#                                {{ contact_form.email.label }}#}
+                            {#                                {{ contact_form.email }}#}
+                            {#                                {{ contact_form.email.errors }}#}
+                            {#                            </div>#}
+                            {##}
+                            {#                            <div class="form-group col-md-6 {% if contact_form.full_name.errors %} text-danger {% endif %}">#}
+                            {#                                {{ contact_form.full_name.label }}#}
+                            {#                                {{ contact_form.full_name }}#}
+                            {#                                {{ contact_form.full_name.errors }}#}
+                            {#                            </div>#}
+                            {##}
+                            {#                            <div class="form-group col-md-12">#}
+                            {#                                {{ contact_form.title.label }}#}
+                            {#                                {{ contact_form.title }}#}
+                            {#                                {{ contact_form.title.errors }}#}
+                            {#                            </div>#}
+                            {#                            <div class="form-group col-md-12 {% if contact_form.text.errors %} text-danger {% endif %}">#}
+                            {#                                {{ contact_form.message.label }}#}
+                            {#                                {{ contact_form.message }}#}
+                            {#                                {{ contact_form.message.errors }}#}
+                            {#                            </div>#}
+
+
+                            <div class="form-group col-md-6">
+                                {{ form.email.label }}
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+
+                            <div class="form-group col-md-6 {% if contact_form.full_name.errors %} text-danger {% endif %}">
+                                {{ form.full_name.label }}
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                {{ form.title.label }}
+                                {{ form.title }}
+                                {{ form.title.errors }}
+                            </div>
+                            <div class="form-group col-md-12 {% if form.errors %} text-danger {% endif %}">
+                                {{ form.message.label }}
+                                {{ form.message }}
+                                {{ form.message.errors }}
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <button type="submit" class="btn btn-primary pull-right">ارسال</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact-info">
+                        <h2 class="title text-center">اطلاعات تماس</h2>
+                        <address>
+                            <h4>نام سایت:</h4>
+                            <p>{{ site_setting.site_name }}</p>
+                            <h4> آدرس: </h4>
+                            <p>{{ site_setting.address }}</p>
+                            <h4>تلفن تماس : </h4>
+                            <p>{{ site_setting.site_phone }}</p>
+                            {% if site_setting.site_fax %}
+                                <h4>فکس : </h4>
+                                <p>{{ site_setting.site_fax }}</p>
+                            {% endif %}
+                            {% if site_setting.site_email %}
+                                <h4 style="font-family: tahoma;">ایمیـل : </h4>
+                                <p>{{ site_setting.site_email }}</p>
+                            {% endif %}
+
+                        </address>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

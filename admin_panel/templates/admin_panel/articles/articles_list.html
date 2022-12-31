@@ -1,0 +1,36 @@
+{% extends 'admin_panel/shared/_admin_layout.html' %}
+
+
+
+{% block title %}صفحه اصلی ادمین{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <tr>
+                        <th class="text-align-center">عنوان</th>
+                        <th class="text-align-center">وضعیت</th>
+                        <th class="text-align-center">دستورات</th>
+                    </tr>
+                    {% for article in article_list %}
+                        <tr>
+                            <td class="text-align-center">{{ article.title }}</td>
+                            <td class="text-align-center">
+                                {% if article.is_active %}
+                                    <span class="text-success">فعال</span>
+                                {% else %}
+                                    <span class="text-danger">غیر فعال</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-align-center">
+                                <a href="{% url 'admin_edit_articles' pk=article.id %}" class="btn btn-warning">ویرایش مقاله</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
